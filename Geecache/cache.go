@@ -1,12 +1,13 @@
 package Geecache
 
 import (
+	lru2 "Geecache/Geecache/lru"
 	"sync"
 )
 
 type cache struct {
 	mu         sync.Mutex
-	lru        *Cache
+	lru        *lru2.Cache
 	cacheBytes int64
 }
 
@@ -14,7 +15,7 @@ func (c *cache) add(key string, value ByteView) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	if c.lru == nil { //延迟初始化
-		c.lru = New(c.cacheBytes, nil)
+		c.lru = lru2.New(c.cacheBytes, nil)
 	}
 	c.lru.Add(key, value)
 }

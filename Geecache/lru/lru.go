@@ -1,4 +1,4 @@
-package Geecache
+package lru
 
 import "container/list"
 
