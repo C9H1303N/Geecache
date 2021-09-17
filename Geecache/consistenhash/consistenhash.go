@@ -12,7 +12,7 @@ type Map struct {
 	hash     Hash
 	replicas int            // 虚拟节点倍数
 	keys     []int          //sorted hash cycle
-	hashMap  map[int]string // key: hash value
+	hashMap  map[int]string // key: hash value, value: client addr
 }
 
 func New(replicas int, fn Hash) *Map {
